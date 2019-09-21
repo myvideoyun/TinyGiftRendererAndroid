@@ -1,0 +1,12 @@
+{
+  "format" : "1",
+  "name":"dog",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "obj" : "0218.obj",
+      "bg" : "fjkt.vwa",
+      "fps" : 20
+    }
+  ]
+}
