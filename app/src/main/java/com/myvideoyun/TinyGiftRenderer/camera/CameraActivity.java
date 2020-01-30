@@ -63,7 +63,7 @@ public class CameraActivity extends AppCompatActivity
           int id =
               TinyGiftRenderer.auth(
                   getApplicationContext(),
-                  "umE46LDxwL3YPGDWz6Q8Ou0ORshb3drGJurQHHFGmLF8YkXh4GV6s2QgaHbAzttAPBui2F+tPJqDw9HaIyqYtA==",
+                  "jAwdRWLiAhQN3lJ2zfJv7e0ORshb3drGJurQHHFGmLF8YkXh4GV6s2QgaHbAzttAPBui2F+tPJqDw9HaIyqYtA==",
                   64);
           Log.e(TAG, "id:" + id);
         }
