@@ -92,9 +92,9 @@ class CameraSurfaceRenderer implements GLSurfaceView.Renderer {
 
     public void createGiftRender(){
         Log.i(TAG, "create gift render filter and set filter path");
-        mGiftFilter = new LightGiftFilter(mContext, 0);
+        mGiftFilter = new LightGiftFilter(mContext, 1);
         //mGiftFilter.create();
-        mGiftFilter.setGiftPath("assets/modelsticker/huacao/meta.json");
+        mGiftFilter.setGiftPath("assets/modelsticker/fjkt/meta.json");
         mGiftFilter.setRenderEventListener(new IEventListener() {
             @Override
             public int onEvent(int msgType, int msgID, String s) {
