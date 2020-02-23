@@ -34,7 +34,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.myvideoyun.TinyGiftRenderer.camera.CameraActivity"
+            android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Fullscreen">
             <intent-filter>
@@ -43,8 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".camera.VideoAndTextureActivity"></activity>-->
-        <activity android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"/>
-    </application>
+        <activity android:name="com.myvideoyun.TinyGiftRenderer.camera.CameraActivity"></activity>
+        <!--<activity android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"/>-->
+   </application>
 
 </manifest>

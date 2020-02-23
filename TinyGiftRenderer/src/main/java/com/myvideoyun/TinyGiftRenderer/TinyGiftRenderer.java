@@ -131,7 +131,7 @@ public class TinyGiftRenderer {
   private static native int _setModelView(long id,  float[] m);
 
   static {
-    System.loadLibrary("giftrenderer");
+    System.loadLibrary("lightgift");
     System.loadLibrary("giftRendererJni");
   }
 }

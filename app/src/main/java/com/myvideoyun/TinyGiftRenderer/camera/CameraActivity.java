@@ -71,7 +71,7 @@ public class CameraActivity extends AppCompatActivity
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
-    Log.d(TAG, "crate the activity");
+    Log.d(TAG, "create the activity");
     super.onCreate(savedInstanceState);
     PermissionUtils.askPermission(
         this,

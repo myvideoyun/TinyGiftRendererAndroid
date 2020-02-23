@@ -11,4 +11,4 @@ add_library(giftRendererJni SHARED ${all_src})
 find_library(android-lib android)
 find_library(log-lib log)
 target_link_libraries(giftRendererJni ${log-lib} ${android-lib}
-    ${lib-path}/libgiftrenderer.so ${lib-path}/)
+    ${lib-path}/liblightgift.so ${lib-path}/)
