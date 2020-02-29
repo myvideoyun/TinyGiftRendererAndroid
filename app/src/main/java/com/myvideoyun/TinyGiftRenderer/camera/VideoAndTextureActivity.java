@@ -16,6 +16,7 @@
 package com.myvideoyun.TinyGiftRenderer.camera;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -24,11 +25,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.TextureView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.VideoView;
 
 import com.myvideoyun.TinyGiftRenderer.TinyGiftRenderer;
 import com.myvideoyun.TinyGiftRenderer.R;
+import com.myvideoyun.TinyGiftRenderer.png.PngRenderActivity;
 import com.myvideoyun.TinyGiftRenderer.render.IEventListener;
 import com.myvideoyun.TinyGiftRenderer.render.LightGiftFilter;
 
@@ -179,6 +183,12 @@ public class VideoAndTextureActivity extends AppCompatActivity {
 
         }
       }
+    });
+
+    Button pngRenderBtn = findViewById(R.id.png_render_btn);
+    pngRenderBtn.setOnClickListener(v -> {
+      Intent intent = new Intent(getBaseContext(), PngRenderActivity.class);
+      startActivity(intent);
     });
   }
 
