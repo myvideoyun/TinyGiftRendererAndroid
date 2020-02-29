@@ -44,6 +44,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.myvideoyun.TinyGiftRenderer.camera.CameraActivity"></activity>
+        <activity android:name=".png.PngRenderActivity" >
+
+        </activity>
         <!--<activity android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"/>-->
    </application>
 

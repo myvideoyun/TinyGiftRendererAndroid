@@ -25,11 +25,11 @@ public class MainApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
+//        LeakCanary.install(this);
 
-        // exception handler, can be commented out;
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        // register the exception handler
-        crashHandler.init(getApplicationContext());
+//        // exception handler, can be commented out;
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        // register the exception handler
+//        crashHandler.init(getApplicationContext());
     }
 }
