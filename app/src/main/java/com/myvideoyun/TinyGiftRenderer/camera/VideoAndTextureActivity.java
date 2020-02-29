@@ -98,7 +98,7 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     auth();
 
     setContentView(R.layout.activity_video_and_texture);
-    requestPermission();
+//    requestPermission();
     initView();
   }
 
@@ -137,18 +137,18 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     mRenderer.halt();
   }
 
-  private void requestPermission() {
-    PermissionUtils.askPermission(
-        this,
-        new String[] {
-          Manifest.permission.WRITE_EXTERNAL_STORAGE,
-          Manifest.permission.CAMERA,
-          Manifest.permission.INTERNET,
-          Manifest.permission.RECORD_AUDIO
-        },
-        10,
-        start);
-  }
+//  private void requestPermission() {
+//    PermissionUtils.askPermission(
+//        this,
+//        new String[] {
+//          Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//          Manifest.permission.CAMERA,
+//          Manifest.permission.INTERNET,
+//          Manifest.permission.RECORD_AUDIO
+//        },
+//        10,
+//        start);
+//  }
 
   private void initView() {
     mVideoView = findViewById(R.id.mVideoView);
@@ -183,12 +183,6 @@ public class VideoAndTextureActivity extends AppCompatActivity {
 
         }
       }
-    });
-
-    Button pngRenderBtn = findViewById(R.id.png_render_btn);
-    pngRenderBtn.setOnClickListener(v -> {
-      Intent intent = new Intent(getBaseContext(), PngRenderActivity.class);
-      startActivity(intent);
     });
   }
 

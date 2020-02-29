@@ -52,12 +52,4 @@
             android:text="效果四" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/png_render_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/radio_group"
-        android:text="png渲染"/>
-
 </RelativeLayout>

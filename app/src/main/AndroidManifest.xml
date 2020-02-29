@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.myvideoyun.TinyGiftRenderer">
 
 
@@ -32,22 +33,32 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen">
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.myvideoyun.TinyGiftRenderer.camera.CameraActivity"></activity>
-        <activity android:name=".png.PngRenderActivity" >
 
-        </activity>
-        <!--<activity android:name="com.myvideoyun.TinyGiftRenderer.camera.VideoAndTextureActivity"/>-->
-   </application>
+        <activity
+            android:name=".camera.VideoAndTextureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+
+        <activity
+            android:name=".camera.CameraActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+
+        <activity
+            android:name=".png.PngRenderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+    </application>
 
 </manifest>
