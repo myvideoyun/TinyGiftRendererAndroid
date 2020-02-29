@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.TextureView;
+import android.widget.RadioGroup;
 import android.widget.VideoView;
 
 import com.myvideoyun.TinyGiftRenderer.TinyGiftRenderer;
@@ -159,6 +160,26 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     mTextureView.setSurfaceTextureListener(mRenderer);
     mTextureView.setOpaque(false);
     playVideo();
+
+    RadioGroup radioGroup = findViewById(R.id.radio_group);
+    radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if (checkedId == R.id.radio_button_0) {
+          mGiftFilter.setGiftPath("assets/modelsticker/huacao/meta.json");
+
+        } else if (checkedId == R.id.radio_button_1) {
+          mGiftFilter.setGiftPath("assets/modelsticker/fjkt/meta.json");
+
+        } else if (checkedId == R.id.radio_button_2) {
+          mGiftFilter.setGiftPath("assets/modelsticker/dog_model/meta.json");
+
+        } else if (checkedId == R.id.radio_button_3) {
+          mGiftFilter.setGiftPath("assets/modelsticker/shoutao/meta.json");
+
+        }
+      }
+    });
   }
 
   private void playVideo() {
