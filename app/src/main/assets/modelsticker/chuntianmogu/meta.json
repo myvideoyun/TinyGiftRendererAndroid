@@ -1,0 +1,29 @@
+{
+  "format" : "1",
+  "name":"春天的蘑菇",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "bg_list" : [
+        {
+          "bg":"shuye.png"
+        },
+        {
+          "bg":"caodi.vwa",
+          "fps":2,
+          "position":"middle_bottom"
+        },
+        {
+          "bg":"mifeng.vwa",
+          "fps":2,
+          "position":"middle_bottom"
+        },
+        {
+          "bg":"mogu.vwa",
+          "fps":2,
+          "position":"center"
+        }
+      ]
+    }
+  ]
+}
