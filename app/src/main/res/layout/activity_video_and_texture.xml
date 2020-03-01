@@ -18,38 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RadioGroup
-        android:id="@+id/radio_group"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/radio_button_0"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:checked="true"
-            android:text="huacao" />
-
-        <RadioButton
-            android:id="@+id/radio_button_1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="fjkt" />
-
-        <RadioButton
-            android:id="@+id/radio_button_2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="dog_model" />
-
-        <RadioButton
-            android:id="@+id/radio_button_3"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="shoutao" />
-    </RadioGroup>
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"/>
 
 </RelativeLayout>

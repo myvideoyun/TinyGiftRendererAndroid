@@ -17,17 +17,28 @@ package com.myvideoyun.TinyGiftRenderer.camera;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.SurfaceTexture;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.opengl.GLES20;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.myvideoyun.TinyGiftRenderer.TinyGiftRenderer;
@@ -38,6 +49,8 @@ import com.myvideoyun.TinyGiftRenderer.render.LightGiftFilter;
 
 import com.myvideoyun.TinyGiftRenderer.gles.EglCore;
 import com.myvideoyun.TinyGiftRenderer.gles.WindowSurface;
+
+import java.util.ArrayList;
 
 public class VideoAndTextureActivity extends AppCompatActivity {
   private static final String TAG = "TGR.videoActivity";
@@ -69,6 +82,8 @@ public class VideoAndTextureActivity extends AppCompatActivity {
   private VideoView mVideoView;
   private TextureView mTextureView;
   private Renderer mRenderer;
+
+  private ArrayList<EffectItem> dataList = new ArrayList();
 
   private void auth() {
     TinyGiftRenderer.setAuthEventListener(
@@ -165,31 +180,94 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     mTextureView.setOpaque(false);
     playVideo();
 
-    RadioGroup radioGroup = findViewById(R.id.radio_group);
-    radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(RadioGroup group, int checkedId) {
-        if (checkedId == R.id.radio_button_0) {
-          mGiftFilter.setGiftPath("assets/modelsticker/huacao/meta.json");
+    dataList.add(new EffectItem(R.mipmap.test, "huacao", "assets/modelsticker/huacao/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.test, "fjkt", "assets/modelsticker/fjkt/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.test, "dog", "assets/modelsticker/dog_model/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.test, "shoutao", "assets/modelsticker/shoutao/meta.json"));
 
-        } else if (checkedId == R.id.radio_button_1) {
-          mGiftFilter.setGiftPath("assets/modelsticker/fjkt/meta.json");
-
-        } else if (checkedId == R.id.radio_button_2) {
-          mGiftFilter.setGiftPath("assets/modelsticker/dog_model/meta.json");
-
-        } else if (checkedId == R.id.radio_button_3) {
-          mGiftFilter.setGiftPath("assets/modelsticker/shoutao/meta.json");
-
-        }
-      }
-    });
+    RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setAdapter(new EffectAdapter());
   }
 
   private void playVideo() {
     String fileName = "android.resource://" + getPackageName() + "/raw/zhubo";
     mVideoView.setVideoURI(Uri.parse(fileName));
     mVideoView.start();
+  }
+
+  private class EffectAdapter extends RecyclerView.Adapter<EffectViewHolder> {
+
+    @NonNull
+    @Override
+    public EffectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      return new EffectViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_effect, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(EffectViewHolder holder, int position) {
+      holder.setData(dataList.get(position));
+      holder.itemView.setOnClickListener(v -> mGiftFilter.setGiftPath(dataList.get(position).path));
+    }
+
+    @Override
+    public int getItemCount() {
+      return dataList.size();
+    }
+  }
+
+  private static class EffectViewHolder extends RecyclerView.ViewHolder {
+
+    public EffectViewHolder(View itemView) {
+      super(itemView);
+    }
+
+    public void setData(EffectItem item) {
+      ImageView effectIv = itemView.findViewById(R.id.effect_name_iv);
+      TextView effectTv = itemView.findViewById(R.id.effect_name_tv);
+      effectIv.setImageResource(item.resId);
+      effectTv.setText(item.name);
+    }
+  }
+
+  private static class EffectItem {
+
+    private @DrawableRes int resId;
+
+    private String name;
+
+    private String path;
+
+    public EffectItem(@DrawableRes int resId, String name, String path) {
+      this.resId = resId;
+      this.name = name;
+      this.path = path;
+    }
+
+    public int getResId() {
+      return resId;
+    }
+
+    public void setResId(int resId) {
+      this.resId = resId;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public void setName(String name) {
+      this.name = name;
+    }
+
+    public String getPath() {
+      return path;
+    }
+
+    public void setPath(String path) {
+      this.path = path;
+    }
   }
 
   /**
