@@ -129,11 +129,13 @@ public class PngSurfaceView extends SurfaceView implements Runnable, SurfaceHold
         bRunning = false;
         // 动画执行完毕，清空画面
         Canvas mCanvas = mHolder.lockCanvas();
-        Paint paint = new Paint();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        mCanvas.drawPaint(paint);
-        // 解锁画布
-        mHolder.unlockCanvasAndPost(mCanvas);
+        if (mCanvas != null) {
+            Paint paint = new Paint();
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            mCanvas.drawPaint(paint);
+            // 解锁画布
+            mHolder.unlockCanvasAndPost(mCanvas);
+        }
     }
 
     /**

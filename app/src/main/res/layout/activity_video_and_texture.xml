@@ -31,25 +31,25 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:checked="true"
-            android:text="效果一" />
+            android:text="huacao" />
 
         <RadioButton
             android:id="@+id/radio_button_1"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="效果二" />
+            android:text="fjkt" />
 
         <RadioButton
             android:id="@+id/radio_button_2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="效果三" />
+            android:text="dog_model" />
 
         <RadioButton
             android:id="@+id/radio_button_3"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="效果四" />
+            android:text="shoutao" />
     </RadioGroup>
 
 </RelativeLayout>
