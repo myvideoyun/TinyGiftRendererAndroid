@@ -1,0 +1,11 @@
+{
+  "format" : "1",
+  "name":"桃树",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "bg":"zhongxiazhiye.vwa",
+      "fps":2
+    }
+  ]
+}

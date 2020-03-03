@@ -1,0 +1,16 @@
+{
+  "format" : "1",
+  "name":"桃树",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "bg":"huaban.vwa",
+      "fps":3,
+      "bg_list": [
+        {
+          "bg": "taoshu.vwa"
+        }
+      ]
+    }
+  ]
+}
