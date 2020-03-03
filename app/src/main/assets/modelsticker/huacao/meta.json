@@ -7,17 +7,17 @@
       "bg_list" : [
         {
           "bg":"bot.vwa",
-          "fps":2,
+          "fps":10,
           "position":"middle_bottom"
         },
         {
           "bg":"top.vwa",
-          "fps":2,
+          "fps":10,
           "position":"middle_top"
         },
         {
           "bg":"bg.vwa",
-          "fps":2,
+          "fps":10,
           "position":"center"
         }
       ]
