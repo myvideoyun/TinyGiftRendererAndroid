@@ -121,11 +121,11 @@ public class VideoAndTextureActivity extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     Log.i(TAG, "create gift render filter and set filter path");
-    mGiftFilter = new LightGiftFilter(getApplicationContext(), 1);
-    mGiftFilter.setGiftPath("assets/modelsticker/zhongxiazhiye/meta.json");
-    //mGiftFilter.setGiftPath("assets/modelsticker/mojing/meta.json");
-    //mGiftFilter.setGiftPath("assets/modelsticker/dog_model/meta.json");
-    //mGiftFilter.setGiftPath("assets/modelsticker/bunny/meta.json");
+    mGiftFilter = new LightGiftFilter(getApplicationContext(), 0);
+    //mGiftFilter.setGiftPath("assets/modelsticker/zhongxiazhiye/meta.json");
+    //mGiftFilter.setGiftPath("assets/modelsticker/chuntianmogu/meta.json");
+    mGiftFilter.setGiftPath("assets/modelsticker/taoshu/meta.json");
+    //mGiftFilter.setGiftPath("assets/modelsticker/huacao/meta.json");
     mGiftFilter.setRenderEventListener(
         new IEventListener() {
           @Override
