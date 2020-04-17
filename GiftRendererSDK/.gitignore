@@ -26,8 +26,8 @@ proguard/
 # Log Files
 *.log
 
-# Image cache
-*/.DS_Store
+# preview Files
+.DS_Store
 
 # Android Studio Navigation editor temp files
 .navigation/
@@ -66,6 +66,3 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
-.idea/misc.xml
-.idea/modules.xml
-.idea/runConfigurations.xml

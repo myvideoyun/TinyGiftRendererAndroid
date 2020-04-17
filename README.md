@@ -41,22 +41,23 @@ Gifts| Components |  vwa Size(KB) | PSNR | Png Size(KB)
 ### Android Java
 1. 认证鉴权
 ```
-TinyGiftRenderer.auth(getApplicationContext(), your-auth-key-string, your-auth-key-length)
+// 初始化License
+MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7aT4TxkdoEFIZ5B2TLf6AikLkNTMfJ97cLlgVKXNxZiB", 48);
 ```
 
 2. 创建TinyGiftRenderer
 ```
-int vertFlip = 1;
-TinyGiftRenderer renderer = new TinyGiftRenderer(context.getApplicationContext(), vertFlip);
+effectHandler = new MVYAnimHandler(AnimationActivity.this);
+effectHandler.setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageFlipVertical);
 ```
 
 3. 设置资源路径
 ```
-renderer->setGiftPath(assetPath);
+effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/LoveRoss/meta.json");
 ```
-Note: 需要在GL线程中设置
 
 4. 渲染
 ```
-renderer->renderGift(inputTextureId, width, height);
+effectHandler.processWithTexture(inputImageFramebuffer.texture[0], width, height);
 ```
+具体可参考AnimationActivity.java和CameraActivity.java.

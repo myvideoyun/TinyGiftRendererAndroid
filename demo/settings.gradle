@@ -1,0 +1,3 @@
+include ':app', ':MVYGiftRendererSDK', ':GiftRenderer'
+project(':GiftRenderer').projectDir=new File('../GiftRendererSDK/GiftRenderer')
+project(':MVYGiftRendererSDK').projectDir=new File('../GiftRendererSDK/MVYGiftRendererSDK')
