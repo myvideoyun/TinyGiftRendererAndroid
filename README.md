@@ -1,3 +1,4 @@
+![Android Build](https://github.com/myvideoyun/TinyGiftRendererAndroid/workflows/Android%20Build/badge.svg)
 # TinyGiftRenderer
 
   迷你礼物渲染库功能强大，全面兼容安卓IOS，使用简单；
