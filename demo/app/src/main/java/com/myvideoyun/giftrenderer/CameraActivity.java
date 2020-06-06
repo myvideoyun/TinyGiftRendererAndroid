@@ -68,9 +68,15 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
 
         effectHandler = new MVYEffectHandler(this);
         effectHandler.setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageFlipVertical);
-        // 设置特效
-        effectHandler.setEffectPath(getExternalCacheDir() + "/myvideoyun/gifts/LoveRoss/meta.json");
-        effectHandler.setEffectPlayCount(2);
+        final boolean try_beauty = true;
+        if(try_beauty) {
+            // 设置美颜效果
+            effectHandler.setEffectPath(getExternalCacheDir() + "/myvideoyun/gifts/Beauty/meta.json");
+        }else {
+            // 设置礼物效果
+            effectHandler.setEffectPath(getExternalCacheDir() + "/myvideoyun/gifts/LoveRoss/meta.json");
+            effectHandler.setEffectPlayCount(2);
+        }
         try {
             // 添加滤镜
             effectHandler.setStyle(BitmapFactory.decodeStream(getApplicationContext().getAssets().open("FilterResources/filter/03桃花.JPG")));
