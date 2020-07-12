@@ -205,6 +205,12 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
 
     // ---------- UI变化 ----------
 
+    /**
+     * mode 0 = effect
+     * mode 1 = beautify
+     * mode 2 = style
+     * mode 3 = douyin
+     */
     @Override
     public void onItemClick(int mode, Object data) {
         this.mode = mode;
@@ -252,12 +258,12 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        // 无用
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        // 无用
     }
 
     // ---------- 渲染相关 ----------
