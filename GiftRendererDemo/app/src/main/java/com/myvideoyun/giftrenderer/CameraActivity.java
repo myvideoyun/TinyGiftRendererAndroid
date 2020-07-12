@@ -109,86 +109,98 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
 
     private void initData() throws IOException {
         // 特效数据
-        String effectDataRootPath = getCacheDir() + File.separator + "effect" + File.separator + "data";
-        String effectIconRootPath = getCacheDir() + File.separator + "effect" + File.separator + "icon";
+        {
+            String effectDataRootPath = getCacheDir() + File.separator + "effect" + File.separator + "data";
+            String effectIconRootPath = getCacheDir() + File.separator + "effect" + File.separator + "icon";
 
-        // 获取特效文件名
-        List<String> effectNameList = new ArrayList<>();
-        File[] effectRes = new File(effectIconRootPath).listFiles(pathname -> !pathname.getName().startsWith("."));
-        for (File file : effectRes) {
-            effectNameList.add(file.getName().substring(0, file.getName().indexOf(".")));
-        }
-        Collections.sort(effectNameList);
-
-        // 获取图标, 名称, 特效路径
-        List<Object[]> effectDataList = new ArrayList<>();
-        for (String effectName : effectNameList) {
-
-            String effectPath = effectDataRootPath + File.separator + effectName + File.separator + "meta.json";
-
-            // 解析json文件中的name
-            StringBuilder stringBuilder = new StringBuilder();
-            InputStream inputStream = new FileInputStream(effectPath);
-            InputStreamReader isr = new InputStreamReader(inputStream);
-            BufferedReader reader = new BufferedReader(isr);
-            String jsonLine;
-            while ((jsonLine = reader.readLine()) != null) {
-                stringBuilder.append(jsonLine);
+            // 获取特效文件名
+            List<String> effectNameList = new ArrayList<>();
+            File[] effectRes = new File(effectIconRootPath).listFiles(pathname -> !pathname.getName().startsWith("."));
+            for (File file : effectRes) {
+                effectNameList.add(file.getName().substring(0, file.getName().indexOf(".")));
             }
-            reader.close();
-            isr.close();
-            inputStream.close();
+            Collections.sort(effectNameList);
 
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(stringBuilder.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
+            // 获取图标, 名称, 特效路径
+            List<Object[]> effectDataList = new ArrayList<>();
+            for (String effectName : effectNameList) {
+
+                String effectPath = effectDataRootPath + File.separator + effectName + File.separator + "meta.json";
+
+                // 解析json文件中的name
+                StringBuilder stringBuilder = new StringBuilder();
+                InputStream inputStream = new FileInputStream(effectPath);
+                InputStreamReader isr = new InputStreamReader(inputStream);
+                BufferedReader reader = new BufferedReader(isr);
+                String jsonLine;
+                while ((jsonLine = reader.readLine()) != null) {
+                    stringBuilder.append(jsonLine);
+                }
+                reader.close();
+                isr.close();
+                inputStream.close();
+
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(stringBuilder.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String iconPath = effectIconRootPath + File.separator + effectName + ".png";
+                String name = jsonObject.optString("name");
+
+                effectDataList.add(new Object[]{iconPath, name, effectPath});
             }
-
-            String iconPath = effectIconRootPath + File.separator + effectName + ".png";
-            String name = jsonObject.optString("name");
-
-            effectDataList.add(new Object[]{iconPath, name, effectPath});
+            // 数据组织好之后刷新UI
+            adapter.refreshEffectData(effectDataList);
         }
-        adapter.refreshEffectData(effectDataList);
 
         // 美颜数据
-        List<Object[]> beautyDataList = new ArrayList<>();
-        beautyDataList.add(new Object[]{R.mipmap.anim_flower, "磨皮", "smooth"});
-        beautyDataList.add(new Object[]{R.mipmap.anim_flower, "红润", "ruby"});
-        beautyDataList.add(new Object[]{R.mipmap.anim_flower, "美白", "white"});
-        beautyDataList.add(new Object[]{R.mipmap.anim_flower, "大眼", "bigEye"});
-        beautyDataList.add(new Object[]{R.mipmap.anim_flower, "瘦脸", "slimFace"});
-        adapter.refreshBeautifyData(beautyDataList);
+        {
+            List<Object[]> beautyDataList = new ArrayList<>();
+            beautyDataList.add(new Object[]{R.mipmap.anim_flower, "磨皮", "smooth"});
+            beautyDataList.add(new Object[]{R.mipmap.anim_flower, "红润", "ruby"});
+            beautyDataList.add(new Object[]{R.mipmap.anim_flower, "美白", "white"});
+            beautyDataList.add(new Object[]{R.mipmap.anim_flower, "大眼", "bigEye"});
+            beautyDataList.add(new Object[]{R.mipmap.anim_flower, "瘦脸", "slimFace"});
+            // 数据组织好之后刷新UI
+            adapter.refreshBeautifyData(beautyDataList);
+        }
 
         // 滤镜数据
-        String styleDataRootPath = getCacheDir() + File.separator + "style" + File.separator + "data";
-        String styleIconRootPath = getCacheDir() + File.separator + "style" + File.separator + "icon";
+        {
+            String styleDataRootPath = getCacheDir() + File.separator + "style" + File.separator + "data";
+            String styleIconRootPath = getCacheDir() + File.separator + "style" + File.separator + "icon";
 
-        List<String> styleNameList = new ArrayList<>();
-        File[] styleRes = new File(styleDataRootPath).listFiles(pathname -> !pathname.getName().startsWith("."));
-        for (File file : styleRes) {
-            styleNameList.add(file.getName());
-        }
-        Collections.sort(styleNameList);
+            List<String> styleNameList = new ArrayList<>();
+            File[] styleRes = new File(styleDataRootPath).listFiles(pathname -> !pathname.getName().startsWith("."));
+            for (File file : styleRes) {
+                styleNameList.add(file.getName());
+            }
+            Collections.sort(styleNameList);
 
-        // 获取图标, 名称, 滤镜路径
-        List<Object[]> styleDataList = new ArrayList<>();
-        for (String styleName : styleNameList) {
-            String iconPath = styleIconRootPath + File.separator + styleName;
-            String name = styleName.substring("00".length(), styleName.length() - ".png".length());
-            String stylePath = styleDataRootPath + File.separator + styleName;
-            styleDataList.add(new Object[]{iconPath, name, stylePath});
+            // 获取图标, 名称, 滤镜路径
+            List<Object[]> styleDataList = new ArrayList<>();
+            for (String styleName : styleNameList) {
+                String iconPath = styleIconRootPath + File.separator + styleName;
+                String name = styleName.substring("00".length(), styleName.length() - ".png".length());
+                String stylePath = styleDataRootPath + File.separator + styleName;
+                styleDataList.add(new Object[]{iconPath, name, stylePath});
+            }
+            // 数据组织好之后刷新UI
+            adapter.refreshStyleData(styleDataList);
         }
-        adapter.refreshStyleData(styleDataList);
 
         // 抖音数据
-        List<Object[]> douyinDataList = new ArrayList<>();
-        douyinDataList.add(new Object[]{R.mipmap.anim_flower, "抖动", ""});
-        douyinDataList.add(new Object[]{R.mipmap.anim_flower, "九宫格", ""});
-        douyinDataList.add(new Object[]{R.mipmap.anim_flower, "转场", ""});
-        adapter.refreshDouyinData(douyinDataList);
+        {
+            List<Object[]> douyinDataList = new ArrayList<>();
+            douyinDataList.add(new Object[]{R.mipmap.anim_flower, "抖动", ""});
+            douyinDataList.add(new Object[]{R.mipmap.anim_flower, "九宫格", ""});
+            douyinDataList.add(new Object[]{R.mipmap.anim_flower, "转场", ""});
+            // 数据组织好之后刷新UI
+            adapter.refreshDouyinData(douyinDataList);
+        }
     }
 
     // ---------- UI变化 ----------
