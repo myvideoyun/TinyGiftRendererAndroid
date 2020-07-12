@@ -1,0 +1,11 @@
+{
+  "format" : "1",
+  "name":"爱心玫瑰",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "bg":"aixinmeigui_medium_v2.vwa",
+      "fps":15
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 应用样式 -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+
+        <!-- Toolbar颜色-->
+        <item name="colorPrimary">@android:color/transparent</item>
+
+        <!-- Toolbar高度-->
+        <item name="actionBarSize">48dp</item>
+
+    </style>
+
+    <!-- 应用样式 -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

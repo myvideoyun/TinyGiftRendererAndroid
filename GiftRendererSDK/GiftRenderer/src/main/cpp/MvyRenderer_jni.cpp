@@ -7,13 +7,12 @@
 
 static JavaVM *ay_effectJvm = NULL;
 
-class GiftRenderer
-{
+class GiftRenderer {
 public:
     void *render;
     jobject callback;
 
-    void effectMessage(int type, int ret, const char *info){
+    void effectMessage(int type, int ret, const char *info) {
         JNIEnv *env;
 
         ay_effectJvm->AttachCurrentThread(&env, NULL);
@@ -29,13 +28,17 @@ public:
             return;
         }
 
-        jmethodID methodID = env->GetMethodID(clazz, "aiyaEffectMessage", "(II)V");
+        jmethodID methodID = env->GetMethodID(clazz, "onMessageCallback", "(IILjava/lang/String)V");
         if (methodID == NULL) {
             ay_effectJvm->DetachCurrentThread();
             return;
         }
 
-        env->CallVoidMethod(callback, methodID, type, ret);
+        jstring infoStr = env->NewStringUTF(info);
+
+        env->CallVoidMethod(callback, methodID, type, ret, infoStr);
+
+        env->DeleteLocalRef(infoStr);
     }
 };
 
@@ -49,7 +52,7 @@ static AAssetManager *getAssetsMgr(JNIEnv *env, jobject obj) {
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_Create(JNIEnv *env, jobject instance) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_Create(JNIEnv *env, jobject instance) {
     void *renderer = renderer_create(1);
     //renderer_setParam(renderer, "AssetManager", getAssetsMgr(env, instance));
 
@@ -62,7 +65,8 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Create(JNIEnv *env, jobject instanc
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_Callback(JNIEnv *env, jobject instance, jlong render_, jobject callback_) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_Callback(JNIEnv *env, jobject instance, jlong render_,
+                                                                   jobject callback_) {
 #if 0
     env->GetJavaVM(&ay_effectJvm);
 
@@ -76,19 +80,20 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Callback(JNIEnv *env, jobject insta
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_Destroy(JNIEnv *env, jobject instance, jlong render_) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_Destroy(JNIEnv *env, jobject instance, jlong render_) {
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
-        renderer_releaseResources((void*)renderer->render);
-        renderer_destropy((void*) renderer->render);
+        renderer_releaseResources((void *) renderer->render);
+        renderer_destropy((void *) renderer->render);
         env->DeleteGlobalRef(renderer->callback);
-        delete(renderer);
+        delete (renderer);
     }
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_SetFaceData(JNIEnv *env, jobject instance, jlong render_, jlong value_) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_SetFaceData(JNIEnv *env, jobject instance, jlong render_,
+                                                                      jlong value_) {
 #if 0
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
@@ -106,19 +111,21 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetFaceData(JNIEnv *env, jobject in
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_SetStickerPath(JNIEnv *env, jobject instance, jlong render_, jstring path_) {
-    const char * path = env->GetStringUTFChars(path_,JNI_FALSE);
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_SetStickerPath(JNIEnv *env, jobject instance, jlong render_,
+                                                                         jstring path_) {
+    const char *path = env->GetStringUTFChars(path_, JNI_FALSE);
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
-        int ret = renderer_setParam((void*)renderer->render, "StickerType", (void*)path);
+        int ret = renderer_setParam((void *) renderer->render, "StickerType", (void *) path);
     }
     env->ReleaseStringUTFChars(path_, path);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_SetEnableVFlip(JNIEnv *env, jobject instance, jlong render_, jboolean enable) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_SetEnableVFlip(JNIEnv *env, jobject instance, jlong render_,
+                                                                         jboolean enable) {
 #if 0
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
@@ -129,7 +136,7 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetEnableVFlip(JNIEnv *env, jobject
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_SetPause(JNIEnv *env, jobject instance, jlong render_) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_SetPause(JNIEnv *env, jobject instance, jlong render_) {
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
         int defaultValue = 1;
@@ -139,7 +146,7 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetPause(JNIEnv *env, jobject insta
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_SetResume(JNIEnv *env, jobject instance, jlong render_) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_SetResume(JNIEnv *env, jobject instance, jlong render_) {
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
         int defaultValue = 0;
@@ -149,19 +156,20 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetResume(JNIEnv *env, jobject inst
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_Draw(JNIEnv *env, jobject instance, jlong render_, jint texture, jint width, jint height) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_Draw(JNIEnv *env, jobject instance, jlong render_,
+                                                               jint texture, jint width, jint height) {
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
         //renderer->render->draw(texture, width, height, NULL);
-        renderer_render((void*)renderer->render, texture, width, height, nullptr);
+        renderer_render((void *) renderer->render, texture, width, height, nullptr);
     }
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_myvideoyun_giftrenderer_MvyRenderer_InitLicense(JNIEnv *env, jclass instance, jobject context,
-                                         jstring appKey_, jint keyLength) {
+Java_com_myvideoyun_giftrenderer_render_basic_MVYRenderer_InitLicense(JNIEnv *env, jclass instance, jobject context,
+                                                                      jstring appKey_, jint keyLength) {
 
     const char *appKey = env->GetStringUTFChars(appKey_, 0);
     env->GetJavaVM(&ay_effectJvm);

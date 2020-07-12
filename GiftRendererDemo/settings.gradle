@@ -1,0 +1,2 @@
+include ':app', ':GiftRenderer'
+project(':GiftRenderer').projectDir=new File('../GiftRendererSDK/GiftRenderer')

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 28
@@ -36,4 +35,7 @@ android {
     }
 }
 
-//apply from: "../AyCore/buildJCenter.gradle"
+dependencies {
+    implementation "com.aiyaapp.aiya:libyuv:4.2.6"
+}
+
