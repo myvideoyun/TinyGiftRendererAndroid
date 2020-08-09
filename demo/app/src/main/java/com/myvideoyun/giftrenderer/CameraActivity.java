@@ -69,7 +69,7 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
         effectHandler = new MVYEffectHandler(this);
         effectHandler.setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageFlipVertical);
         // 设置特效
-        effectHandler.setEffectPath(getExternalCacheDir() + "/myvideoyun/gifts/LoveRoss/meta.json");
+        effectHandler.setEffectPath(getExternalCacheDir() + "/myvideoyun/gifts/aixinmeigui_v1/meta.json");
         effectHandler.setEffectPlayCount(2);
         try {
             // 添加滤镜

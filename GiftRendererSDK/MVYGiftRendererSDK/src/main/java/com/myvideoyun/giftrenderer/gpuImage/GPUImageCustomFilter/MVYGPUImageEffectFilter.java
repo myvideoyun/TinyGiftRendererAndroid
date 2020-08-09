@@ -129,7 +129,7 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
     }
 
     @Override
-    public void aiyaEffectMessage(int type, int ret) {
+    public void MVYRenderMsg(int type, int ret) {
 
         if (effectPath == null || effectPath.equals("")) {
             // 路径错误

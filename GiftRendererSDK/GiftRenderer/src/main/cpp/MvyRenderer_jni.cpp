@@ -5,7 +5,7 @@
 #include "render_api.h"
 #include <android/asset_manager_jni.h>
 
-static JavaVM *ay_effectJvm = NULL;
+static JavaVM *pJavaVM = NULL;
 
 class GiftRenderer
 {
@@ -16,22 +16,22 @@ public:
     void effectMessage(int type, int ret, const char *info){
         JNIEnv *env;
 
-        ay_effectJvm->AttachCurrentThread(&env, NULL);
+        pJavaVM->AttachCurrentThread(&env, NULL);
 
         if (callback == NULL) {
-            ay_effectJvm->DetachCurrentThread();
+            pJavaVM->DetachCurrentThread();
             return;
         }
 
         jclass clazz = env->GetObjectClass(callback);
         if (clazz == NULL) {
-            ay_effectJvm->DetachCurrentThread();
+            pJavaVM->DetachCurrentThread();
             return;
         }
 
-        jmethodID methodID = env->GetMethodID(clazz, "aiyaEffectMessage", "(II)V");
+        jmethodID methodID = env->GetMethodID(clazz, "MVYRenderMsg", "(II)V");
         if (methodID == NULL) {
-            ay_effectJvm->DetachCurrentThread();
+            pJavaVM->DetachCurrentThread();
             return;
         }
 
@@ -63,15 +63,15 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Create(JNIEnv *env, jobject instanc
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_Callback(JNIEnv *env, jobject instance, jlong render_, jobject callback_) {
-#if 0
-    env->GetJavaVM(&ay_effectJvm);
+    env->GetJavaVM(&pJavaVM);
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
-        renderer->render->message = std::bind(&GiftRenderer::effectMessage, renderer, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+        MsgCallback cb;
+        cb.callback = std::bind(&GiftRenderer::effectMessage, renderer, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
         renderer->callback = env->NewGlobalRef(callback_);
+        renderer_setParam(renderer->render, "MsgFunction", (void*)&cb);
     }
-#endif
 }
 
 extern "C"
@@ -89,19 +89,6 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Destroy(JNIEnv *env, jobject instan
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_SetFaceData(JNIEnv *env, jobject instance, jlong render_, jlong value_) {
-#if 0
-    GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
-    if (renderer) {
-
-        FaceData **faceData = reinterpret_cast<FaceData **>(value_);
-
-        if (faceData && *faceData) {
-            renderer->render->setParam("FaceData", *faceData);
-        } else {
-            renderer->render->setParam("FaceData", NULL);
-        }
-    }
-#endif
 }
 
 extern "C"
@@ -153,7 +140,6 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Draw(JNIEnv *env, jobject instance,
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
-        //renderer->render->draw(texture, width, height, NULL);
         renderer_render((void*)renderer->render, texture, width, height, nullptr);
     }
 }
@@ -164,10 +150,8 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_InitLicense(JNIEnv *env, jclass ins
                                          jstring appKey_, jint keyLength) {
 
     const char *appKey = env->GetStringUTFChars(appKey_, 0);
-    env->GetJavaVM(&ay_effectJvm);
+    env->GetJavaVM(&pJavaVM);
 
-
-    //AyCore_Auth2(env, context, appKey);
     renderer_auth(env, context, appKey, keyLength, NULL);
 
     env->ReleaseStringUTFChars(appKey_, appKey);

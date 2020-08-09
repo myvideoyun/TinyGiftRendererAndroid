@@ -2,22 +2,18 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "27.0.3"
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 4206
-        versionName "4.2.6"
+        versionCode 1001
+        versionName "1.0.01"
     }
 }
 
 dependencies {
-    //implementation project(':libyuv')
+    implementation project(':libyuv')
     implementation project(':GiftRenderer')
-
-//    TODO 直接依赖jcenter项目
-    compile "com.aiyaapp.aiya:libyuv:$android.defaultConfig.versionName"
 }
 
-//apply from: "../AyCore/buildJCenter.gradle"

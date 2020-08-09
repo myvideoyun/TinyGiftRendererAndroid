@@ -97,7 +97,7 @@ public class AnimationActivity extends AppCompatActivity {
             Button button = (Button) v;
             if (button.getText().equals("play")) {
                 // 设置特效
-                effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/LoveRoss/meta.json");
+                effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/aixinmeigui_v2/meta.json");
                 effectHandler.setAssetPlayCount(1);
                 button.setText("stop");
             } else if (button.getText().equals("stop")) {
