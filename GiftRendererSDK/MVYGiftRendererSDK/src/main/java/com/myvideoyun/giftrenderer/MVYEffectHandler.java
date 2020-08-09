@@ -114,8 +114,8 @@ public class MVYEffectHandler {
     public void setEffectPath(String effectPath) {
         File file = new File(effectPath);
         if (!file.exists() && !effectPath.equals("")) {
-            Log.e("AYEffect", "无效的特效资源路径");
-            return;
+            Log.e("MVYGiftRenderer", "Invalid asset path");
+			return;
         }
         if (effectFilter != null) {
             effectFilter.setEffectPath(effectPath);

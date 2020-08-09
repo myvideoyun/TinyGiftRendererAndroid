@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_animation).setOnClickListener(this);
 
         // 初始化License
-        MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7aT4TxkdoEFIZ5B2TLf6AikLkNTMfJ97cLlgVKXNxZiB", 48);
+        MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7Wo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL", 48);
         // copy数据
         new Thread(() -> {
             String dstPath = getExternalCacheDir() + "/myvideoyun/gifts";

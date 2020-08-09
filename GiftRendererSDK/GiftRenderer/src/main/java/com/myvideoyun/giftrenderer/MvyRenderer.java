@@ -113,6 +113,6 @@ public class MvyRenderer {
     public static native void InitLicense(Context context, String key, int keyLength);
 
     public interface OnEffectCallback {
-        void aiyaEffectMessage(int type, int ret);
+        void MVYRenderMsg(int type, int ret);
     }
 }
