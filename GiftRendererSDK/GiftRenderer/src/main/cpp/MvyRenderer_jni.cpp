@@ -63,15 +63,15 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Create(JNIEnv *env, jobject instanc
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_Callback(JNIEnv *env, jobject instance, jlong render_, jobject callback_) {
-#if 0
     env->GetJavaVM(&ay_effectJvm);
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
     if (renderer) {
-        renderer->render->message = std::bind(&GiftRenderer::effectMessage, renderer, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
+        MsgCallback cb;
+        cb.callback = std::bind(&GiftRenderer::effectMessage, renderer, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
         renderer->callback = env->NewGlobalRef(callback_);
+        renderer_setParam(renderer->render, "MsgFunction", (void*)&cb);
     }
-#endif
 }
 
 extern "C"
@@ -166,8 +166,6 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_InitLicense(JNIEnv *env, jclass ins
     const char *appKey = env->GetStringUTFChars(appKey_, 0);
     env->GetJavaVM(&ay_effectJvm);
 
-
-    //AyCore_Auth2(env, context, appKey);
     renderer_auth(env, context, appKey, keyLength, NULL);
 
     env->ReleaseStringUTFChars(appKey_, appKey);
