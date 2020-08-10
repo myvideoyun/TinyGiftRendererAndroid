@@ -1,16 +1,33 @@
 package com.myvideoyun.giftrenderer.gpuImage.GPUImageCustomFilter.inputOutput;
 
-import com.aiyaapp.aiya.AYYuvUtil;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGLProgram;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageEGLContext;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFramebuffer;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageInput;
+import com.myvideoyun.libyuv.MVYYuvUtil;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
-import static android.opengl.GLES20.*;
+import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
+import static android.opengl.GLES20.GL_FLOAT;
+import static android.opengl.GLES20.GL_RGBA;
+import static android.opengl.GLES20.GL_TEXTURE2;
+import static android.opengl.GLES20.GL_TEXTURE_2D;
+import static android.opengl.GLES20.GL_TRIANGLE_STRIP;
+import static android.opengl.GLES20.GL_UNSIGNED_BYTE;
+import static android.opengl.GLES20.glActiveTexture;
+import static android.opengl.GLES20.glBindTexture;
+import static android.opengl.GLES20.glClear;
+import static android.opengl.GLES20.glClearColor;
+import static android.opengl.GLES20.glDisableVertexAttribArray;
+import static android.opengl.GLES20.glDrawArrays;
+import static android.opengl.GLES20.glEnableVertexAttribArray;
+import static android.opengl.GLES20.glFinish;
+import static android.opengl.GLES20.glReadPixels;
+import static android.opengl.GLES20.glUniform1i;
+import static android.opengl.GLES20.glVertexAttribPointer;
 import static com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageNoRotation;
 import static com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFilter.kAYGPUImagePassthroughFragmentShaderString;
 import static com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFilter.kAYGPUImageVertexShaderString;
@@ -90,7 +107,7 @@ public class MVYGPUImageI420DataOutput implements MVYGPUImageInput {
                 // 处理lineSize != width
                 for (int x = 0; x < textureCoordinates.length; x = x + 2) {
                     if (textureCoordinates[x] == 1) {
-                        textureCoordinates[x] = (float)outputLineSize / (float)outputWidth;
+                        textureCoordinates[x] = (float) outputLineSize / (float) outputWidth;
                     }
                 }
 
@@ -105,7 +122,7 @@ public class MVYGPUImageI420DataOutput implements MVYGPUImageInput {
                 glFinish();
                 glReadPixels(0, 0, outputLineSize, outputHeight, GL_RGBA, GL_UNSIGNED_BYTE, bgraBuffer);
 
-                AYYuvUtil.RGBA_To_I420(bgraBuffer, yuvBuffer, outputLineSize, outputHeight);
+                MVYYuvUtil.RGBA_To_I420(bgraBuffer, yuvBuffer, outputLineSize, outputHeight);
 
                 yuvBuffer.rewind();
                 yuvBuffer.get(outputYUVData);
@@ -166,6 +183,6 @@ public class MVYGPUImageI420DataOutput implements MVYGPUImageInput {
 
     @Override
     public void newFrameReady() {
-        renderToTexture(imageVertices,  MVYGPUImageConstants.floatArrayToBuffer(MVYGPUImageConstants.textureCoordinatesForRotation(rotateMode)));
+        renderToTexture(imageVertices, MVYGPUImageConstants.floatArrayToBuffer(MVYGPUImageConstants.textureCoordinatesForRotation(rotateMode)));
     }
 }

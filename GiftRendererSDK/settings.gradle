@@ -1,1 +1,1 @@
-include ':GiftRenderer', ':MVYGiftRendererSDK'
+include ':GiftRenderer', ':MVYGiftRendererSDK', ':libyuv'

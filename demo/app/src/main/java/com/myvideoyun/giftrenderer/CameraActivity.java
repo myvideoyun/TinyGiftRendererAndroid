@@ -10,6 +10,7 @@ import com.myvideoyun.giftrenderer.cameraTool.MVYCameraPreviewWrap;
 import com.myvideoyun.giftrenderer.cameraTool.MVYPreviewView;
 import com.myvideoyun.giftrenderer.cameraTool.MVYPreviewViewListener;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants;
+import com.myvideoyun.video.R;
 
 import java.io.IOException;
 
@@ -25,7 +26,7 @@ public class CameraActivity extends AppCompatActivity implements MVYCameraPrevie
     MVYEffectHandler effectHandler;
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_camera);

@@ -1,8 +1,8 @@
-package com.aiyaapp.aiya;
+package com.myvideoyun.libyuv;
 
 import java.nio.ByteBuffer;
 
-public class AYYuvUtil {
+public class MVYYuvUtil {
 
     static {
         System.loadLibrary("libyuv");

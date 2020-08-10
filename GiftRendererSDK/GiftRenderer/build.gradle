@@ -35,3 +35,5 @@ android {
         }
     }
 }
+
+apply from: "../buildJCenter.gradle"

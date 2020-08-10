@@ -7,7 +7,19 @@ import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFramebuffer;
 
 import java.nio.Buffer;
 
-import static android.opengl.GLES20.*;
+import static android.opengl.GLES20.GL_BLEND;
+import static android.opengl.GLES20.GL_DEPTH_ATTACHMENT;
+import static android.opengl.GLES20.GL_DEPTH_COMPONENT16;
+import static android.opengl.GLES20.GL_DEPTH_TEST;
+import static android.opengl.GLES20.GL_FRAMEBUFFER;
+import static android.opengl.GLES20.GL_RENDERBUFFER;
+import static android.opengl.GLES20.glBindRenderbuffer;
+import static android.opengl.GLES20.glDeleteRenderbuffers;
+import static android.opengl.GLES20.glDisable;
+import static android.opengl.GLES20.glEnable;
+import static android.opengl.GLES20.glFramebufferRenderbuffer;
+import static android.opengl.GLES20.glGenRenderbuffers;
+import static android.opengl.GLES20.glRenderbufferStorage;
 import static com.myvideoyun.giftrenderer.MvyRenderer.MSG_STAT_EFFECTS_END;
 
 public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRenderer.OnEffectCallback {

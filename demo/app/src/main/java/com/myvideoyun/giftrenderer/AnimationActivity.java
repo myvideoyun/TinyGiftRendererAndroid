@@ -10,6 +10,7 @@ import com.myvideoyun.giftrenderer.animTool.MVYAnimView;
 import com.myvideoyun.giftrenderer.animTool.MVYAnimViewListener;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFramebuffer;
+import com.myvideoyun.video.R;
 
 import static android.opengl.GLES20.*;
 import static com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants.AYGPUImageContentMode.kAYGPUImageScaleAspectFill;

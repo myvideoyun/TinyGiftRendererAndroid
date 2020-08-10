@@ -10,12 +10,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-//import com.myvideoyun.giftrenderer.GiftRenderer;
+import com.myvideoyun.video.R;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+//import com.myvideoyun.giftrenderer.GiftRenderer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static void deleteFile(File file) {
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

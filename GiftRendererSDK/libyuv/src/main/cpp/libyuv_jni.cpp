@@ -4,7 +4,7 @@
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_aiyaapp_aiya_AYYuvUtil_RGBA_1To_1I420(JNIEnv *env, jclass type, jobject bgra_,
+Java_com_myvideoyun_libyuv_AYYuvUtil_RGBA_1To_1I420(JNIEnv *env, jclass type, jobject bgra_,
                                                jobject yuv_, jint width, jint height) {
 
     const uint8 *bgra = reinterpret_cast<const uint8 *>(env->GetDirectBufferAddress(bgra_));
@@ -26,7 +26,7 @@ Java_com_aiyaapp_aiya_AYYuvUtil_RGBA_1To_1I420(JNIEnv *env, jclass type, jobject
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_aiyaapp_aiya_AYYuvUtil_I420_1To_1RGBA(JNIEnv *env, jclass type, jobject yuv_,
+Java_com_myvideoyun_libyuv_AYYuvUtil_I420_1To_1RGBA(JNIEnv *env, jclass type, jobject yuv_,
                                                jobject bgra_, jint width, jint height) {
 
     uint8 *bgra = reinterpret_cast<uint8 *>(env->GetDirectBufferAddress(bgra_));
