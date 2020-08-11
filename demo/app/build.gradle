@@ -7,7 +7,7 @@ android {
         cruncherEnabled=false
     }
     defaultConfig {
-        applicationId "com.myvideoyun.video"
+        applicationId "com.myvideoyun.demo"
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
