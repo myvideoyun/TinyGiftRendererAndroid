@@ -26,7 +26,7 @@ struct ObserverMsg {
 };
 
 struct Observer {
-    void (*message)(int type, int ret, const char *info);
+    void (*callback)(int type, int ret, const char *info);
 };
 
 #ifdef __cplusplus
@@ -47,7 +47,9 @@ void renderer_auth(std::string appId, std::string appKey, std::string imei,
 EXPORT void *renderer_create(int vertical_flip);
 EXPORT void renderer_destropy(void *renderer);
 EXPORT int renderer_setParam(void *renderer, const char *param_name,
-                      void *param_value);
+                             void *param_value);
+EXPORT int renderer_setFloatParam(void *renderer, const char *param_name,
+                                  float param_value);
 EXPORT int renderer_render(void *renderer, int texId, int width, int height,
                     const char *rgba_buf);
 EXPORT int renderer_releaseResources(void *renderer_handler);

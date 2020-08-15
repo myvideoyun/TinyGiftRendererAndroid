@@ -100,6 +100,9 @@ public class MvyRenderer {
         updateVFlip = true;
     }
 
+    public interface OnResultCallback {
+        void onResult(int ret); //0表示成功, 其它表示失败
+    }
 
     native long Create();
     native void Destroy(long renderer);
@@ -110,7 +113,7 @@ public class MvyRenderer {
     native void SetPause(long renderer);
     native void SetResume(long renderer);
     native void Draw(long renderer, int texture, int width, int height);
-    public static native void InitLicense(Context context, String key, int keyLength);
+    public static native void InitLicense(Context context, String key, int keyLength, OnResultCallback callback);
 
     public interface OnEffectCallback {
         void MVYRenderMsg(int type, int ret);

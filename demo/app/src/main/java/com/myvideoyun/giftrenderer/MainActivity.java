@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 //import com.myvideoyun.giftrenderer.GiftRenderer;
@@ -90,7 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_animation).setOnClickListener(this);
 
         // 初始化License
-        MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7Wo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL", 48);
+        MVYLicenseManager.initLicense(getApplicationContext(),
+                "jAwdRWLiAhQN3lJ2zfJv7Wo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL",
+                48, ret -> Log.d("myvideoyun", "License初始化结果 : " + ret));
         // copy数据
         new Thread(() -> {
             String dstPath = getExternalCacheDir() + "/myvideoyun/gifts";

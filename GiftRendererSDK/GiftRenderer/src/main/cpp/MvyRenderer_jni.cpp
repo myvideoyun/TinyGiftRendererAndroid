@@ -6,6 +6,51 @@
 #include <android/asset_manager_jni.h>
 
 static JavaVM *pJavaVM = NULL;
+static JavaVM *pAuthVM = NULL;
+static jobject ayCoreCallback;
+
+void func_ay_auth_message(int type, int ret, const char *info) {
+    if (type == ObserverMsg::MSG_TYPE_AUTH) {
+        JNIEnv *env;
+        int status;
+        bool isAttached = false;
+        status = pAuthVM->GetEnv((void**)&env, JNI_VERSION_1_4);
+        if (status < 0) {
+            pAuthVM->AttachCurrentThread(&env, NULL);
+            isAttached = true;
+        }
+
+        if (ayCoreCallback == NULL) {
+            pAuthVM->DetachCurrentThread();
+            return;
+        }
+
+        jclass clazz = env->GetObjectClass(ayCoreCallback);
+        if (clazz == NULL) {
+            pAuthVM->DetachCurrentThread();
+            return;
+        }
+
+        jmethodID methodID = env->GetMethodID(clazz, "onResult", "(I)V");
+        if (methodID == NULL) {
+            pAuthVM->DetachCurrentThread();
+            return;
+        }
+
+        //调用该java方法
+        env->CallVoidMethod(ayCoreCallback, methodID, ret);
+
+        env->DeleteGlobalRef(ayCoreCallback);
+
+        ayCoreCallback = NULL;
+
+        if (isAttached) {
+            pAuthVM->DetachCurrentThread();
+        }
+    }
+}
+
+Observer ay_auth_observer = {func_ay_auth_message};
 
 class GiftRenderer
 {
@@ -147,12 +192,12 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Draw(JNIEnv *env, jobject instance,
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_InitLicense(JNIEnv *env, jclass instance, jobject context,
-                                         jstring appKey_, jint keyLength) {
+                                         jstring appKey_, jint keyLength, jobject callback) {
 
     const char *appKey = env->GetStringUTFChars(appKey_, 0);
-    env->GetJavaVM(&pJavaVM);
-
-    renderer_auth(env, context, appKey, keyLength, NULL);
+    env->GetJavaVM(&pAuthVM);
+    ayCoreCallback = env->NewGlobalRef(callback);
+    renderer_auth(env, context, appKey, keyLength, &ay_auth_observer);
 
     env->ReleaseStringUTFChars(appKey_, appKey);
 }
