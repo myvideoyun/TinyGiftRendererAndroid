@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.myvideoyun.video.R;
@@ -94,7 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_animation).setOnClickListener(this);
 
         // 初始化License
-        MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7Wo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL", 48);
+        int ret = MVYLicenseManager.initLicense(getApplicationContext(), "jAwdRWLiAhQN3lJ2zfJv7Wo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL", 48);
+        if(ret == 0)
+            Log.d("TGR", "Authenticate OK");
+        else
+            Log.d("TGR", "Authenticate Fail");
         // copy数据
         new Thread(() -> {
             String dstPath = getExternalCacheDir() + "/myvideoyun/gifts";

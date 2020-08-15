@@ -145,14 +145,14 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_Draw(JNIEnv *env, jobject instance,
 }
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT jint JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_InitLicense(JNIEnv *env, jclass instance, jobject context,
                                          jstring appKey_, jint keyLength) {
 
     const char *appKey = env->GetStringUTFChars(appKey_, 0);
-    env->GetJavaVM(&pJavaVM);
 
-    renderer_auth(env, context, appKey, keyLength, NULL);
+    int auth_ret = renderer_auth(env, context, appKey, keyLength);
 
     env->ReleaseStringUTFChars(appKey_, appKey);
+	return auth_ret;
 }

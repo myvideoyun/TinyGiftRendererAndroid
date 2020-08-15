@@ -33,7 +33,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.myvideoyun.video:MVYGiftRendererSDK:1.0.01'
+    implementation 'com.myvideoyun.video:MVYGiftRendererSDK:1.0.06'
 //    implementation project(':MVYGiftRendererSDK')
 
     implementation 'com.android.support:appcompat-v7:28.0.0'

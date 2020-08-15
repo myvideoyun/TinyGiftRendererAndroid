@@ -7,17 +7,17 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 1001
-        versionName "1.0.01"
+        versionCode 1006
+        versionName "1.0.06"
     }
 }
 
 dependencies {
-//    implementation project(':libyuv')
-//    implementation project(':GiftRenderer')
+//    api project(':libyuv')
+//    api project(':GiftRenderer')
 
-    implementation 'com.myvideoyun.video:libyuv:1.0.01'
-    implementation 'com.myvideoyun.video:GiftRenderer:1.0.01'
+    api 'com.myvideoyun.video:libyuv:1.0.02'
+    api 'com.myvideoyun.video:GiftRenderer:1.0.06'
 }
 
 apply from: "../buildJCenter.gradle"

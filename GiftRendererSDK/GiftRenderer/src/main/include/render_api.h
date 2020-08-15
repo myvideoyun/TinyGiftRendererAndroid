@@ -25,10 +25,6 @@ struct ObserverMsg {
     static const int MSG_ERR_FUNC_FORBIDDEN = 0xFE000010;
 };
 
-struct Observer {
-    void (*message)(int type, int ret, const char *info);
-};
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -36,18 +32,20 @@ extern "C" {
 #if defined(ANDROID)
 #define EXPORT __attribute((visibility("default")))
 #include <jni.h>
-void renderer_auth(JNIEnv *env, jobject obj, std::string appKey, int length,
-                   Observer *observer);
+// 0: ok; -1: fail;
+int renderer_auth(JNIEnv *env, jobject obj, std::string appKey, int length);
 #else
 #define EXPORT
-void renderer_auth(std::string appId, std::string appKey, std::string imei,
-                   int length, Observer *AuthEventObserver);
+// 0: ok; -1: fail;
+int renderer_auth(std::string appId, std::string appKey, int length);
 #endif
 
 EXPORT void *renderer_create(int vertical_flip);
 EXPORT void renderer_destropy(void *renderer);
 EXPORT int renderer_setParam(void *renderer, const char *param_name,
-                      void *param_value);
+                             void *param_value);
+EXPORT int renderer_setFloatParam(void *renderer, const char *param_name,
+                                  float param_value);
 EXPORT int renderer_render(void *renderer, int texId, int width, int height,
                     const char *rgba_buf);
 EXPORT int renderer_releaseResources(void *renderer_handler);
