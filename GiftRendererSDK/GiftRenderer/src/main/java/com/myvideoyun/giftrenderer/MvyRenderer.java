@@ -110,7 +110,7 @@ public class MvyRenderer {
     native void SetPause(long renderer);
     native void SetResume(long renderer);
     native void Draw(long renderer, int texture, int width, int height);
-    public static native void InitLicense(Context context, String key, int keyLength);
+    public static native int InitLicense(Context context, String key, int keyLength);
 
     public interface OnEffectCallback {
         void MVYRenderMsg(int type, int ret);
