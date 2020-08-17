@@ -183,7 +183,7 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     dataList.add(new EffectItem(R.mipmap.huacao, "huacao", "assets/modelsticker/huacao/meta.json"));
     dataList.add(new EffectItem(R.mipmap.taoshu, "taoshu", "assets/modelsticker/taoshu/meta.json"));
     dataList.add(new EffectItem(R.mipmap.zhongxiazhiye, "zhongxiazhiye", "assets/modelsticker/zhongxiazhiye/meta.json"));
-    dataList.add(new EffectItem(R.mipmap.mogu, "mogu", "assets/modelsticker/chuntianmogu/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.mogu, "mogu", "assets/modelsticker/jiaozi-3d/meta.json"));
 
     RecyclerView recyclerView = findViewById(R.id.recycler_view);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
@@ -383,6 +383,7 @@ public class VideoAndTextureActivity extends AppCompatActivity {
         // Still alive, render a frame.
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
         mGiftFilter.renderToScreen(0); // passing a invalid texture id
 
         // Publish the frame.  If we overrun the consumer, frames will be dropped,

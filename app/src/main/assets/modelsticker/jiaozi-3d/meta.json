@@ -1,0 +1,12 @@
+{
+  "format" : "1",
+  "name":"dog",
+  "nodes" : [
+    {
+	  "type":"3dModel",
+      "obj" : "jc.obj",
+      "fps" : 20
+    }
+  ]
+}
+
