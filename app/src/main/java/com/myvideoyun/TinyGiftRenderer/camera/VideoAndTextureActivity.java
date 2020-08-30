@@ -124,7 +124,7 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     mGiftFilter = new LightGiftFilter(getApplicationContext(), 0);
     //mGiftFilter.setGiftPath("assets/modelsticker/zhongxiazhiye/meta.json");
     //mGiftFilter.setGiftPath("assets/modelsticker/chuntianmogu/meta.json");
-    mGiftFilter.setGiftPath("assets/modelsticker/taoshu/meta.json");
+    mGiftFilter.setGiftPath("assets/modelsticker/dangao_v2/meta.json");
     //mGiftFilter.setGiftPath("assets/modelsticker/huacao/meta.json");
     mGiftFilter.setRenderEventListener(
         new IEventListener() {
@@ -180,10 +180,10 @@ public class VideoAndTextureActivity extends AppCompatActivity {
     mTextureView.setOpaque(false);
     playVideo();
 
-    dataList.add(new EffectItem(R.mipmap.huacao, "huacao", "assets/modelsticker/huacao/meta.json"));
-    dataList.add(new EffectItem(R.mipmap.taoshu, "taoshu", "assets/modelsticker/taoshu/meta.json"));
-    dataList.add(new EffectItem(R.mipmap.zhongxiazhiye, "zhongxiazhiye", "assets/modelsticker/zhongxiazhiye/meta.json"));
-    dataList.add(new EffectItem(R.mipmap.mogu, "mogu", "assets/modelsticker/chuntianmogu/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.huacao, "firework1", "assets/modelsticker/firework_v2/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.taoshu, "dangao1", "assets/modelsticker/dangao_v2/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.zhongxiazhiye, "giftgirl1", "assets/modelsticker/giftgirl_v2/meta.json"));
+    dataList.add(new EffectItem(R.mipmap.mogu, "qiqiu1", "assets/modelsticker/qiqiu_v2/meta.json"));
 
     RecyclerView recyclerView = findViewById(R.id.recycler_view);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);

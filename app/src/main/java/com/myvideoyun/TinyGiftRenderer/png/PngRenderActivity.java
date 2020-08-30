@@ -29,7 +29,7 @@ public class PngRenderActivity extends AppCompatActivity {
         videoView.start();
     }
 
-    private void startPngRender() {
+    private void startPngRender_1() {
         String[] fileNames = new String[40];
         for (int i = 0; i < fileNames.length; i++) {
             fileNames[i] = String.format("pngframes/huacao/png/bg/bg_%02d.png", i + 1);
@@ -50,5 +50,14 @@ public class PngRenderActivity extends AppCompatActivity {
         }
         PngSurfaceView mSurFrame2 = findViewById(R.id.suv_frame_2);
         mSurFrame2.startAnim(fileNames2);
+    }
+
+    private void startPngRender() {
+        String[] fileNames = new String[40];
+        for (int i = 0; i < fileNames.length; i++) {
+            fileNames[i] = String.format("pngframes/dump/dump_%03d.png", i);
+        }
+        PngSurfaceView mSurFrame = findViewById(R.id.suv_frame_0);
+        mSurFrame.startAnim(fileNames);
     }
 }

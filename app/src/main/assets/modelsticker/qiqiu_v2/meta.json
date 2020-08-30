@@ -1,11 +1,11 @@
 {
   "format" : "1",
-  "name":"zhongxiazhiye",
+  "name":"qiqiu",
   "nodes" : [
     {
 	  "type":"3dModel",
-      "bg":"zhongxiazhiye.vwa",
-      "fps":2
+      "bg":"qiqiu_v2.vwa",
+      "fps":15
     }
   ]
 }
