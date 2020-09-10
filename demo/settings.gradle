@@ -1,4 +1,4 @@
-include ':app'//, ':MVYGiftRendererSDK', ':GiftRenderer', ":libyuv"
-//project(':GiftRenderer').projectDir=new File('../GiftRendererSDK/GiftRenderer')
-//project(':MVYGiftRendererSDK').projectDir=new File('../GiftRendererSDK/MVYGiftRendererSDK')
-//project(':libyuv').projectDir=new File('../GiftRendererSDK/libyuv')
+include ':app', ':MVYGiftRendererSDK', ':GiftRenderer', ":libyuv"
+project(':GiftRenderer').projectDir=new File('../GiftRendererSDK/GiftRenderer')
+project(':MVYGiftRendererSDK').projectDir=new File('../GiftRendererSDK/MVYGiftRendererSDK')
+project(':libyuv').projectDir=new File('../GiftRendererSDK/libyuv')

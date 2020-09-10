@@ -108,6 +108,10 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
         this.faceData = faceData;
     }
 
+    public void setMVPMatrix(float[] mvp){
+        effect.SetMVPMatrix(mvp);
+    }
+
     public void pause() {
         effect.pauseProcess();
     }
