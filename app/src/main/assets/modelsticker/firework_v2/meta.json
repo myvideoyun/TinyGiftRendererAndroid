@@ -5,7 +5,8 @@
     {
 	  "type":"3dModel",
       "bg":"fireworks_v2.vwa",
-      "fps":15
+      "fps":15,
+      "loop":1
     }
   ]
 }
