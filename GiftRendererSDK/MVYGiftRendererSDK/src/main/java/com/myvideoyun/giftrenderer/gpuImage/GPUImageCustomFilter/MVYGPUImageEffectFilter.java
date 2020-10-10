@@ -103,6 +103,10 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
     public void setEffectPlayFinishListener(MVYGPUImageEffectPlayFinishListener effectPlayFinishListener) {
         this.effectPlayFinishListener = effectPlayFinishListener;
     }
+	
+    public void setMVPMatrix(float[] mvp){
+        effect.SetMVPMatrix(mvp);
+    }
 
     public void setFaceData(long faceData) {
         this.faceData = faceData;
