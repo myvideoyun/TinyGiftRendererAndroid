@@ -129,6 +129,12 @@ public class MVYAnimHandler {
         }
     }
 
+    public void setMVPMatrix(float []mvp){
+        if(effectFilter != null){
+            effectFilter.setMVPMatrix(mvp);
+        }
+    }
+
     public void setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode rotateMode) {
         this.textureInput.setRotateMode(rotateMode);
 

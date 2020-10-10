@@ -136,6 +136,28 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetResume(JNIEnv *env, jobject inst
 
 extern "C"
 JNIEXPORT void JNICALL
+Java_com_myvideoyun_giftrenderer_MvyRenderer_SetMVPMatrix(JNIEnv *env, jobject instance, jlong render_, jfloatArray mvp) {
+    GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
+    jsize len = env->GetArrayLength(mvp);
+    jfloat *body = env->GetFloatArrayElements(mvp, 0);
+    if(len != 16){
+        // Show some warnings
+        return;
+    }
+
+    float mvp_matrix[16];
+    for(int i = 0; i < 16; ++i)
+        mvp_matrix[i] = body[i];
+
+    if (renderer) {
+        renderer_setParam(renderer->render, "ModelView", (void*)mvp_matrix);
+    }
+    env->ReleaseFloatArrayElements(mvp, body, 0);
+    return;
+}
+
+extern "C"
+JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_Draw(JNIEnv *env, jobject instance, jlong render_, jint texture, jint width, jint height) {
 
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);

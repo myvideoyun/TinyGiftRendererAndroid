@@ -134,6 +134,11 @@ public class MVYEffectHandler {
         }
     }
 
+    public void setMVPMatrix(float [] matrix){
+        if(effectFilter != null)
+            effectFilter.setMVPMatrix(matrix);
+    }
+
     public void pauseEffect() {
         if (effectFilter != null) {
             effectFilter.pause();

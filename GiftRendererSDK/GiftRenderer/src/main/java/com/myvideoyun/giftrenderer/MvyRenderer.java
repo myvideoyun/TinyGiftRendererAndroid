@@ -87,6 +87,10 @@ public class MvyRenderer {
 
         updateEffectPath = true;
     }
+	
+    public void SetMVPMatrix(float[] mvp){
+        SetMVPMatrix(render, mvp);
+    }
 
     public void setFaceData(long faceData) {
         this.faceData = faceData;
@@ -109,6 +113,7 @@ public class MvyRenderer {
     native void SetEnableVFlip(long renderer,  boolean enable);
     native void SetPause(long renderer);
     native void SetResume(long renderer);
+    native void SetMVPMatrix(long renderer, float [] mvp);
     native void Draw(long renderer, int texture, int width, int height);
     public static native int InitLicense(Context context, String key, int keyLength);
 
