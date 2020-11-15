@@ -6,7 +6,7 @@
 	  "type":"3dModel",
       "bg":"aixinmeigui_v1.vwa",
       "fps":15,
-      "loop":0
+      "loop":1
     }
   ]
 }

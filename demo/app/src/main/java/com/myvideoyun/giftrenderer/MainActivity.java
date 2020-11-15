@@ -101,13 +101,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
             Log.d("TGR", "Authenticate Fail");
         // copy数据
-        new Thread(() -> {
+        Thread t = new Thread(() -> {
             String dstPath = getExternalCacheDir() + "/myvideoyun/gifts";
             if (!new File(dstPath).exists()) {
                 deleteFile(new File(dstPath));
                 copyFileFromAssets("modelsticker", dstPath, getAssets());
             }
-        }).start();
+        });
+        t.start();
+        try {
+            t.join();
+        }catch (InterruptedException e) { e.printStackTrace(); }
+        enterAnimationPage();
     }
 
     @Override

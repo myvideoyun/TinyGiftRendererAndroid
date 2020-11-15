@@ -40,6 +40,8 @@ public class AnimationActivity extends AppCompatActivity {
                     effectHandler = new MVYAnimHandler(AnimationActivity.this);
                     effectHandler.setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageFlipVertical);
                     effectHandler.setAssetPlayFinishListener(() -> Log.d("AnimationActivity", "当前特效播放完成"));
+                    effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/aixinmeigui_v1/meta.json");
+                    //effectHandler.setAssetPlayCount(3);
                 });
 
                 renderThread = new MVYAnimRenderThread();
