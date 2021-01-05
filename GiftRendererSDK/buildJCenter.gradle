@@ -43,6 +43,28 @@ install {
   }
 }
 
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+          // Define this explicitly if using implementation or api configurations
+          pom.withXml {
+            def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+          
+            // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+            configurations.implementation.allDependencies.each {
+               // Ensure dependencies such as fileTree are not included.
+               if (it.name != 'unspecified') {
+                  def dependencyNode = dependenciesNode.appendNode('dependency')
+                  dependencyNode.appendNode('groupId', it.group)
+                  dependencyNode.appendNode('artifactId', it.name)
+                  dependencyNode.appendNode('version', it.version)
+               }
+            }
+          }
+        }
+    }
+}   
+
 // 打包 javadocjar 和 sourcejar
 task sourcesJar(type: Jar) {
   from android.sourceSets.main.java.srcDirs
@@ -71,6 +93,7 @@ bintray {
   user = properties.getProperty("bintray.user")
   key = properties.getProperty("bintray.apikey")
   configurations = ['archives']
+  publications = ['MyPublication']
   pkg {
     repo = "sdk"
     name = libraryName    //发布到JCenter上的项目名字
