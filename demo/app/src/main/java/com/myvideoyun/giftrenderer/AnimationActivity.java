@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.myvideoyun.giftrenderer.animTool.MVYAnimRenderThread;
 import com.myvideoyun.giftrenderer.animTool.MVYAnimView;
 import com.myvideoyun.giftrenderer.animTool.MVYAnimViewListener;
+import com.myvideoyun.giftrenderer.gpuImage.GPUImageCustomFilter.MVYGPUImageEffectPlayFinishListener;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageConstants;
 import com.myvideoyun.giftrenderer.gpuImage.MVYGPUImageFramebuffer;
 import com.myvideoyun.video.R;
@@ -39,7 +40,11 @@ public class AnimationActivity extends AppCompatActivity {
 
                     effectHandler = new MVYAnimHandler(AnimationActivity.this);
                     effectHandler.setRotateMode(MVYGPUImageConstants.AYGPUImageRotationMode.kAYGPUImageFlipVertical);
-                    effectHandler.setAssetPlayFinishListener(() -> Log.d("AnimationActivity", "当前特效播放完成"));
+                    effectHandler.setAssetPlayFinishListener( new MVYGPUImageEffectPlayFinishListener() {
+                        public void playFinish(int ret) {
+                            Log.d("AnimationActivity", "当前特效播放完成, ret: " + ret);
+                        }
+                    });
                 });
 
                 renderThread = new MVYAnimRenderThread();
