@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.main_animation).setOnClickListener(this);
 
         // 初始化License
-        int ret = MVYLicenseManager.initLicense(getApplicationContext(), "xgLeQ5G6YF0zLOBUH9GQemo5D0gs6PF/l/kAo0vbMdZbgaV7+E06henBKCM13hkL", 48);
+        int ret = MVYLicenseManager.initLicenseEx(getApplicationContext(), "B7EkZE/J8ucIeYj9mcIytHLhKh9dOSh39hr2ALWHmiXOjj+sUxpNoEL4xlC/im9MK2aaCu6YLlikOlbOzXXEuUqjkufKAcjIVWLiLWmCx3oZtWv1WCNOjsYQ5NJ7c3W7",
+                96, "kWPxm2sStV0rsDDT34cfEPg1Rd3EORAB9u7lVcGsogNAUACIPWNVM40N7Jcs4JldSFOmiq61l+yQUFqsv17wPg==", 64);
         if(ret == 0)
             Log.d("TGR", "Authenticate OK");
         else

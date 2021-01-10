@@ -116,6 +116,7 @@ public class MvyRenderer {
     native void SetMVPMatrix(long renderer, float [] mvp);
     native void Draw(long renderer, int texture, int width, int height);
     public static native int InitLicense(Context context, String key, int keyLength);
+    public static native int InitLicenseEx(Context context, String license, int licenseLength, String key, int keyLength);
 
     public interface OnEffectCallback {
         void MVYRenderMsg(int type, int ret);
