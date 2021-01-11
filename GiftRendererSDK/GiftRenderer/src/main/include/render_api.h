@@ -34,10 +34,14 @@ extern "C" {
 #include <jni.h>
 // 0: ok; -1: fail;
 int renderer_auth(JNIEnv *env, jobject obj, std::string appKey, int length);
+int renderer_auth_ex(JNIEnv *env, jobject obj, std::string license,
+                     int licLength, std::string appKey, int keyLength);
 #else
 #define EXPORT
 // 0: ok; -1: fail;
 int renderer_auth(std::string appId, std::string appKey, int length);
+int renderer_auth_ex(std::string appId, std::string license, int licLength,
+                     std::string appKey, int keyLength);
 #endif
 
 EXPORT void *renderer_create(int vertical_flip);

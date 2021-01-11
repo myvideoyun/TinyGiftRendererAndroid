@@ -155,7 +155,7 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
                 setEffectPath("");
 
                 if (effectPlayFinishListener != null) {
-                    effectPlayFinishListener.playFinish();
+                    effectPlayFinishListener.playFinish(ret);
                 }
             }
 
