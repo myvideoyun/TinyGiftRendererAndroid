@@ -4,6 +4,7 @@ buildscript {
     repositories {
         jcenter()
         google()
+        mavenCentral()
     }
 
     dependencies {
@@ -15,10 +16,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {url "https://dl.bintray.com/realmyvideoyun/sdk/"}
-
         jcenter()
         google()
+        mavenCentral()
     }
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
