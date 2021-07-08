@@ -21,3 +21,5 @@ dependencies {
 }
 
 apply from: "../buildJCenter.gradle"
+apply from: "../publish-mavencentral.gradle"
+
