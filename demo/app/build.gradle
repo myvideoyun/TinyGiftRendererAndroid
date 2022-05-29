@@ -32,7 +32,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'io.github.myvideoyun:MVYGiftRendererSDK:1.0.16'
 //    implementation project(':MVYGiftRendererSDK')
 
