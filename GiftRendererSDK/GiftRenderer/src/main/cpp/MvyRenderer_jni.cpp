@@ -105,6 +105,17 @@ Java_com_myvideoyun_giftrenderer_MvyRenderer_SetStickerPath(JNIEnv *env, jobject
 
 extern "C"
 JNIEXPORT void JNICALL
+Java_com_myvideoyun_giftrenderer_MvyRenderer_SetOverlayImgPath(JNIEnv *env, jobject instance, jlong render_, jstring path_) {
+    const char * path = env->GetStringUTFChars(path_,JNI_FALSE);
+
+    GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);
+    if (renderer) {
+        int ret = renderer_setParam((void*)renderer->render, "OverlayImgPath", (void*)path);
+    }
+    env->ReleaseStringUTFChars(path_, path);
+}
+extern "C"
+JNIEXPORT void JNICALL
 Java_com_myvideoyun_giftrenderer_MvyRenderer_SetEnableVFlip(JNIEnv *env, jobject instance, jlong render_, jboolean enable) {
 #if 0
     GiftRenderer *renderer = reinterpret_cast<GiftRenderer *>(render_);

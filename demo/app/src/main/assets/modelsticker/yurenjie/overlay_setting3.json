@@ -1,0 +1,27 @@
+{
+    "format" : "1",
+    "name":"compound",
+    "nodes" : [
+      {
+        "type":"3dModel",
+        "fps":15,
+        "bg":"113489.vwa",
+        "view_rects":[
+          {
+            "frame_idx": 0,
+            "view_x": 0,
+            "view_y": 840,
+            "view_w": 120,
+            "view_h": 120
+          },
+          {
+            "frame_idx": 119,
+            "view_x": 120,
+            "view_y": 60,
+            "view_w": 24,
+            "view_h": 48
+          }
+        ]
+      }
+    ]
+  }

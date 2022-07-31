@@ -26,6 +26,7 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
     private MvyRenderer effect;
 
     private String effectPath;
+    private String overlayPath;
     private int effectPlayCount;
     private int currentPlayCount;
     private long faceData;
@@ -95,6 +96,11 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
         effect.setEffectPath(effectPath);
     }
 
+    public void setOverlayPath(String path) {
+        this.overlayPath = path;
+        effect.setOverlayPath(path);
+    }
+
     public void setEffectPlayCount(int effectPlayCount) {
         this.effectPlayCount = effectPlayCount;
         currentPlayCount = 0;
@@ -153,6 +159,7 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
             currentPlayCount++;
             if (ret < 0 || (effectPlayCount != 0 && currentPlayCount >= effectPlayCount)) {
                 setEffectPath("");
+                setOverlayPath("");
 
                 if (effectPlayFinishListener != null) {
                     effectPlayFinishListener.playFinish(ret);
@@ -161,6 +168,7 @@ public class MVYGPUImageEffectFilter extends MVYGPUImageFilter implements MvyRen
 
         } else if (effectPlayCount != 0 && currentPlayCount >= effectPlayCount) { //已经播放完成
             setEffectPath("");
+            setOverlayPath("");
         }
     }
 }

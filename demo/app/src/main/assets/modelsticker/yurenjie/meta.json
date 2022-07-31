@@ -1,0 +1,11 @@
+{
+    "format": "1",
+    "name": "yurenjie",
+    "nodes": [
+        {
+            "type": "3dModel",
+            "bg": "113489.vwa",
+            "fps": 15
+        }
+    ]
+}

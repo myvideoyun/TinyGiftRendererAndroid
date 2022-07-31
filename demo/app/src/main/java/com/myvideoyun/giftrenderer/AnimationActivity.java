@@ -103,12 +103,14 @@ public class AnimationActivity extends AppCompatActivity {
             Button button = (Button) v;
             if (button.getText().equals("play")) {
                 // 设置特效
-                effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/aixinmeigui_v2/meta.json");
+                effectHandler.setAssetPath(getExternalCacheDir() + "/myvideoyun/gifts/yurenjie/overlay_setting1.json");
+                effectHandler.setOverlayPath(getExternalCacheDir() + "/myvideoyun/gifts/yurenjie/xin_19.png");
                 effectHandler.setAssetPlayCount(1);
                 button.setText("stop");
             } else if (button.getText().equals("stop")) {
                 // 设置特效
                 effectHandler.setAssetPath("");
+                effectHandler.setOverlayPath("");
                 button.setText("play");
             }
         });

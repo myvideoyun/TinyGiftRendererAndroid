@@ -122,6 +122,17 @@ public class MVYEffectHandler {
         }
     }
 
+    public void setOverlayPath(String path) {
+        File file = new File(path);
+        if (!file.exists() && !path.equals("")) {
+            Log.e("MVYGiftRenderer", "Invalid asset path");
+            return;
+        }
+        if (effectFilter != null) {
+            effectFilter.setOverlayPath(path);
+        }
+    }
+
     public void setEffectPlayCount(int effectPlayCount) {
         if (effectFilter != null) {
             effectFilter.setEffectPlayCount(effectPlayCount);

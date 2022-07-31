@@ -36,9 +36,11 @@ public class MvyRenderer {
 
     private long render;
     private String effectPath;
+    private String overlayImgPath;
     private long faceData;
     private boolean enalbeVFilp;
     private boolean updateEffectPath;
+    private boolean updateOverlayPath;
     private boolean updateFaceData;
     private boolean updateVFlip;
 
@@ -58,6 +60,10 @@ public class MvyRenderer {
         if (updateEffectPath) {
             SetStickerPath(render, effectPath);
             updateEffectPath = false;
+        }
+        if(updateOverlayPath){
+            SetOverlayImgPath(render, overlayImgPath);
+            updateOverlayPath = false;
         }
 
         if (updateFaceData) {
@@ -87,7 +93,13 @@ public class MvyRenderer {
 
         updateEffectPath = true;
     }
-	
+
+    public void setOverlayPath(String overlayPath) {
+        this.overlayImgPath = overlayPath;
+
+        updateOverlayPath = true;
+    }
+
     public void SetMVPMatrix(float[] mvp){
         SetMVPMatrix(render, mvp);
     }
@@ -110,6 +122,7 @@ public class MvyRenderer {
     native void Callback(long renderer, OnEffectCallback callback);
     native void SetFaceData(long renderer, long value);
     native void SetStickerPath(long renderer, String ptah);
+    native void SetOverlayImgPath(long renderer, String ptah);
     native void SetEnableVFlip(long renderer,  boolean enable);
     native void SetPause(long renderer);
     native void SetResume(long renderer);
