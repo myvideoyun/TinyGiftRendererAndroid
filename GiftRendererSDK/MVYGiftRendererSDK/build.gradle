@@ -20,6 +20,5 @@ dependencies {
 //    api 'com.myvideoyun.video:GiftRenderer:1.0.16'
 }
 
-apply from: "../buildJCenter.gradle"
 apply from: "../publish-mavencentral.gradle"
 
