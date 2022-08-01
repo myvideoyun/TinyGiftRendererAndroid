@@ -49,6 +49,9 @@ public class AnimationActivity extends AppCompatActivity {
             new Thread(() -> {
                 try {
                     downloadImageFromUrl("https://avatars.githubusercontent.com/u/45362645?v=4", imageFile.getPath());
+                    runOnUiThread(() -> {
+                        Toast.makeText(this, "overlay image download success", Toast.LENGTH_SHORT).show();
+                    });
                 } catch (IOException e) {
                     e.printStackTrace();
                     runOnUiThread(() -> {
@@ -56,6 +59,9 @@ public class AnimationActivity extends AppCompatActivity {
                     });
                 }
             }).start();
+            runOnUiThread(() -> {
+                Toast.makeText(this, "overlay image downloading", Toast.LENGTH_SHORT).show();
+            });
         }
 
         // 第一个渲染视图
