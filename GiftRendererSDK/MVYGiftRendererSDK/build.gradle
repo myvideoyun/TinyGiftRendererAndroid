@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.kezong.fat-aar'
 
 android {
     compileSdkVersion 28
@@ -7,17 +8,16 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 1016
+        versionCode 1017
         versionName "1.0.17"
     }
 }
 
 dependencies {
-    api project(':libyuv')
-    api project(':GiftRenderer')
-
-//    api 'com.myvideoyun.video:libyuv:1.0.16'
-//    api 'com.myvideoyun.video:GiftRenderer:1.0.16'
+//    api project(':libyuv')
+//    api project(':GiftRenderer')
+    embed project(path: ':libyuv', configuration: 'default')
+    embed project(path: ':GiftRenderer', configuration: 'default')
 }
 
 apply from: "../publish-mavencentral.gradle"

@@ -33,8 +33,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-//    implementation 'io.github.myvideoyun:MVYGiftRendererSDK:1.0.16'
-    implementation project(':MVYGiftRendererSDK')
+    implementation 'io.github.myvideoyun:MVYGiftRendererSDK:1.0.17'
+//    implementation project(':MVYGiftRendererSDK')
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.squareup.leakcanary:leakcanary-android:1.5.3'
